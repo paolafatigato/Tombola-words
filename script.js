@@ -1,111 +1,12 @@
-const words = [
-    {num: 1, word: "alice", definition: "A curious girl from a famous story."},
-    {num: 2, word: "alligator", definition: "A big green animal that lives in water and has many teeth."},
-    {num: 3, word: "art", definition: "A school subject where you draw and paint."},
-    {num: 4, word: "ask", definition: "To say words to get information or a question."},
-    {num: 5, word: "aunt", definition: "The sister of your mother or father."},
-    {num: 6, word: "baby", definition: "A very young child."},
-    {num: 7, word: "backpack", definition: "A bag you carry on your back."},
-    {num: 8, word: "bird", definition: "An animal with wings that can fly."},
-    {num: 9, word: "board", definition: "The big surface where the teacher writes in class."},
-    {num: 10, word: "book", definition: "Many pages together that you read."},
-    {num: 11, word: "brave", definition: "Not afraid in a difficult situation."},
-    {num: 12, word: "brother", definition: "A boy who has the same parents as you."},
-    {num: 13, word: "cat", definition: "A small animal that says \"meow\"."},
-    {num: 14, word: "chair", definition: "You sit on this at a table or desk."},
-    {num: 15, word: "class", definition: "A group of students who study together."},
-    {num: 16, word: "clock", definition: "An object that shows the time."},
-    {num: 17, word: "clumsy", definition: "A person who often drops things or falls."},
-    {num: 18, word: "coat", definition: "A warm piece of clothing you wear outside."},
-    {num: 19, word: "cook", definition: "The person who prepares food in a restaurant."},
-    {num: 20, word: "cooking", definition: "Making food in the kitchen."},
-    {num: 21, word: "cousin", definition: "The child of your aunt or uncle."},
-    {num: 22, word: "dance", definition: "To move your body to music."},
-    {num: 23, word: "desk", definition: "A table where you work or study."},
-    {num: 24, word: "dog", definition: "An animal that says \"woof\"."},
-    {num: 25, word: "door", definition: "You open this to go in or out of a room."},
-    {num: 26, word: "drawing", definition: "Making a picture with a pencil or pen."},
-    {num: 27, word: "drink", definition: "To put water, juice or another liquid in your mouth."},
-    {num: 28, word: "drug", definition: "A strong medicine or illegal chemical people take."},
-    {num: 29, word: "elephant", definition: "A very big grey animal with a long trunk."},
-    {num: 30, word: "english", definition: "The language you are studying now."},
-    {num: 31, word: "father", definition: "The man who is your parent."},
-    {num: 32, word: "films", definition: "Stories you watch on TV or at the cinema."},
-    {num: 33, word: "fish", definition: "An animal that lives in water and swims."},
-    {num: 34, word: "floor", definition: "The part of the room you walk on."},
-    {num: 35, word: "football", definition: "A sport where you kick a ball and try to score goals."},
-    {num: 36, word: "geography", definition: "A school subject about countries, maps and places."},
-    {num: 37, word: "glue", definition: "A sticky thing that joins paper together."},
-    {num: 38, word: "go", definition: "To move from one place to another."},
-    {num: 39, word: "grandfather", definition: "The father of your mother or father."},
-    {num: 40, word: "grandmother", definition: "The mother of your mother or father."},
-    {num: 41, word: "guitar", definition: "A musical instrument with strings."},
-    {num: 42, word: "hard-working", definition: "A person who studies or works a lot."},
-    {num: 43, word: "have lunch", definition: "Eat a meal in the middle of the day."},
-    {num: 44, word: "help", definition: "To do something so another person's work is easier."},
-    {num: 45, word: "high", definition: "Not low; at a big level or far from the ground."},
-    {num: 46, word: "history", definition: "A school subject about the past."},
-    {num: 47, word: "horse", definition: "A big animal that people can ride."},
-    {num: 48, word: "kind", definition: "A person who is nice and helps people."},
-    {num: 49, word: "lazy", definition: "A person who doesn't like working or studying."},
-    {num: 50, word: "lion", definition: "A big wild cat, the \"king of the jungle\"."},
-    {num: 51, word: "listen", definition: "Use your ears to hear sounds or people."},
-    {num: 52, word: "love", definition: "To like someone or something very, very much."},
-    {num: 53, word: "maths", definition: "A school subject with numbers and calculations."},
-    {num: 54, word: "marx", definition: "A famous thinker about workers and politics."},
-    {num: 55, word: "money", definition: "Coins and notes that you use to buy things."},
-    {num: 56, word: "mother", definition: "The woman who is your parent."},
-    {num: 57, word: "mouse", definition: "A very small animal that likes cheese."},
-    {num: 58, word: "ms Fatigato", definition: "The name of your teacher."},
-    {num: 59, word: "music", definition: "Sounds with rhythm that you like to listen to."},
-    {num: 60, word: "neighbor", definition: "A person who lives near your house."},
-    {num: 61, word: "noisy", definition: "Making a lot of loud sounds."},
-    {num: 62, word: "notebook", definition: "A small book where you write notes."},
-    {num: 63, word: "open", definition: "To move a door, window or book so it is not closed."},
-    {num: 64, word: "pay", definition: "Give money when you buy something."},
-    {num: 65, word: "pe", definition: "A school subject where you do sport and exercise."},
-    {num: 66, word: "pen", definition: "You use it with ink to write."},
-    {num: 67, word: "Persephone", definition: "The greek queen of the Underworld."},
-    {num: 68, word: "play", definition: "Have fun with a game or toy."},
-    {num: 69, word: "rabbit hole", definition: "A deep hole where a rabbit lives."},
-    {num: 70, word: "read", definition: "Look at words in a book and understand them."},
-    {num: 71, word: "religion", definition: "Ideas about God and different beliefs."},
-    {num: 72, word: "revolution", definition: "A big change in government or society."},
-    {num: 73, word: "ruler", definition: "A long, flat tool you use to measure or draw lines."},
-    {num: 74, word: "run", definition: "To move faster than walking."},
-    {num: 75, word: "schoolbag", definition: "A bag where you carry books to school."},
-    {num: 76, word: "science", definition: "A school subject about nature and experiments."},
-    {num: 77, word: "schizophrenia", definition: "A serious mental illness of the brain."},
-    {num: 78, word: "scissors", definition: "A small tool with two blades to cut paper."},
-    {num: 79, word: "selfish", definition: "A person who only thinks about themselves."},
-    {num: 80, word: "serious", definition: "A person who doesn't smile much and is not playful."},
-    {num: 81, word: "sharpener", definition: "A small tool to make a pencil sharp."},
-    {num: 82, word: "shy", definition: "A person who is quiet and afraid to speak to people."},
-    {num: 83, word: "sister", definition: "A girl who has the same parents as you."},
-    {num: 84, word: "sleep", definition: "To rest at night with your eyes closed."},
-    {num: 85, word: "speak", definition: "To say words with your mouth."},
-    {num: 86, word: "student", definition: "A person who goes to school to learn."},
-    {num: 87, word: "stressed", definition: "Feeling very worried and under pressure."},
-    {num: 88, word: "sweather", definition: "A warm top you wear over a shirt in cold weather."},
-    {num: 89, word: "take", definition: "To pick something up and hold or move it."},
-    {num: 90, word: "talkative", definition: "A person who likes speaking a lot."},
-    {num: 91, word: "teacher", definition: "A person who helps students learn."},
-    {num: 92, word: "tiger", definition: "A big orange and black wild cat."},
-    {num: 93, word: "uncle", definition: "The brother of your mother or father."},
-    {num: 94, word: "video games", definition: "Games you play on a console, phone or computer."},
-    {num: 95, word: "wake up", definition: "Stop sleeping and open your eyes."},
-    {num: 96, word: "walk", definition: "To move on your feet, not fast."},
-    {num: 97, word: "wall", definition: "The vertical part around a room."},
-    {num: 98, word: "window", definition: "The glass part of a wall you can see through."},
-    {num: 99, word: "young", definition: "A person who is not old."},
-    {num: 100, word: "Yayoy", definition: "The name of an artist who draws dots."}
-];
+
 
 let extractedNumbers = [];
 let isSpinning = false;
-let playerCards = {card1: [], card2: [], card3: []};
+let playerCards = {card1: [], card2: [], card3: [], card4: []};
+let currentBoardWords = [];
+let selectedClass = "mix";
 
-// Generate colors for 100 segments
+
 const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
     '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B739', '#52B788',
@@ -118,21 +19,149 @@ function showPage(page) {
     document.getElementById(page).classList.add('active');
 }
 
+function selectClass(classLevel) {
+    selectedClass = classLevel;
+
+    // aggiorna i pallini attivi
+    document.querySelectorAll(".class-dot").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    const btn = document.querySelector(
+        `.class-dot[data-class="${classLevel}"]`
+    );
+    if (btn) btn.classList.add("active");
+
+    document.getElementById("navButtons").style.display = "flex";
+
+    createBoard();
+    createWheel();
+    generatePlayerCards();
+    showPage("index");
+}
+
+
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+
+function applyCategoryClasses(cell, item) {
+    const cats = item.categories || [];
+
+    if (cats.includes("OTHER"))   cell.classList.add("cat-other");
+    if (cats.includes("NOUN"))    cell.classList.add("cat-noun");
+    if (cats.includes("ACTION"))  cell.classList.add("cat-action");
+    if (cats.includes("ADJ"))     cell.classList.add("cat-adj");
+    if (cats.includes("FAM"))     cell.classList.add("cat-fam");
+    if (cats.includes("ANIMAL"))  cell.classList.add("cat-animal");
+    if (cats.includes("CLOTHES")) cell.classList.add("cat-clothes");
+    if (cats.includes("JOB"))     cell.classList.add("cat-job");
+    if (cats.includes("LIT"))     cell.classList.add("cat-lit"); // ultima = prioritaria
+}
+
 function createBoard() {
-    const board = document.getElementById('board');
-    words.forEach(item => {
-        const cell = document.createElement('div');
-        cell.className = 'board-cell';
-        cell.innerHTML = `<div class="number">${item.num}</div><div class="word">${item.word}</div>`;
-        cell.id = `cell-${item.num}`;
+    const board = document.getElementById("board");
+    board.innerHTML = "";
+
+    let classWords;
+
+    if (selectedClass === "mix") {
+        // tutte le parole delle tre classi
+        classWords = words.filter(w =>
+            w.classe === "1media" ||
+            w.classe === "2media" ||
+            w.classe === "3media"
+        );
+    } else {
+        // logica già presente
+        classWords = words.filter(w => w.classe === selectedClass);
+
+        if (classWords.length < 100) {
+            let additionalWords;
+            if (selectedClass === "2media") {
+                additionalWords = words.filter(w => w.classe === "1media");
+            } else if (selectedClass === "3media") {
+                additionalWords = words.filter(
+                    w => w.classe === "2media" || w.classe === "1media"
+                );
+            }
+            additionalWords = shuffleArray(additionalWords);
+            const needed = 100 - classWords.length;
+            classWords = [...classWords, ...additionalWords.slice(0, needed)];
+        }
+    }
+
+    currentBoardWords = classWords
+        .sort((a, b) => a.word.localeCompare(b.word))
+        .slice(0, 100);
+
+   currentBoardWords.forEach((item, index) => {
+    const num = index + 1;
+    const cell = document.createElement("div");
+    cell.className = "board-cell  cell";//due classi
+
+    applyCategoryClasses(cell, item);
+
+    cell.innerHTML = `
+        <div class="number">${num}</div>
+        <div class="word">${item.word}</div>
+    `;
+    cell.id = `cell-${num}`;
+    board.appendChild(cell);
+});
+
+}
+
+function randomMixedBoard() {
+    selectedClass = "mix";
+    
+    // aggiorna active
+    document.querySelectorAll(".class-dot").forEach(btn => {
+        btn.classList.remove("active");
+    });
+    const mixBtn = document.querySelector(`.class-dot[data-class="mix"]`);
+    if (mixBtn) mixBtn.classList.add("active");
+    // rimescola tutte le parole delle 3 classi
+    const all = words.filter(w =>
+        w.classe === "1media" ||
+        w.classe === "2media" ||
+        w.classe === "3media"
+    );
+    const shuffled = shuffleArray(all);
+    currentBoardWords = shuffled.slice(0, 100);
+
+    const board = document.getElementById("board");
+    board.innerHTML = "";
+    currentBoardWords.forEach((item, index) => {
+        const num = index + 1;
+        const cell = document.createElement("div");
+        cell.className = "board-cell";
+        cell.innerHTML = `
+            <div class="number">${num}</div>
+            <div class="word">${item.word}</div>
+        `;
+        cell.id = `cell-${num}`;
         board.appendChild(cell);
     });
+
+    // reset estrazioni
+    extractedNumbers = [];
+    document.getElementById("spinBtn").textContent = "Spin!";
+    document.getElementById("spinBtn").disabled = false;
+    document.getElementById("extractedNumber").textContent = "";
+    document.getElementById("extractedWord").textContent = "";
+    document.getElementById("extractedDefinition").textContent = "";
 }
+
 
 function createWheel() {
     const wheel = document.getElementById('wheel');
-    if (!wheel) return;
-    
     const segmentAngle = 360 / 100;
     
     let gradientStops = [];
@@ -168,7 +197,7 @@ function spinWheel() {
     
     setTimeout(() => {
         extractedNumbers.push(randomNum);
-        const wordObj = words.find(w => w.num === randomNum);
+        const wordObj = currentBoardWords[randomNum - 1];
         
         document.getElementById('extractedNumber').textContent = randomNum;
         document.getElementById('extractedWord').textContent = wordObj.word;
@@ -188,11 +217,11 @@ function spinWheel() {
 }
 
 function generatePlayerCards() {
-    const cardSizes = [14, 15, 16];
+    const cardSizes = [14, 15, 15, 14];
     
-    ['card1', 'card2', 'card3'].forEach((cardId, idx) => {
+    ['card1', 'card2', 'card3', 'card4'].forEach((cardId, idx) => {
         const size = cardSizes[idx];
-        let availableWords = [...words];
+        let availableWords = [...currentBoardWords];
         let selectedWords = [];
         
         for (let i = 0; i < size; i++) {
@@ -206,26 +235,93 @@ function generatePlayerCards() {
     });
 }
 
+function applyCategoryClasses(cell, item) {
+    const cats = item.categories || [];
+
+        if (cats.includes("OTHER"))    cell.classList.add("cat-other");
+        if (cats.includes("NOUN"))     cell.classList.add("cat-noun");
+        if (cats.includes("ACTION"))   cell.classList.add("cat-action");
+        if (cats.includes("ADJ"))      cell.classList.add("cat-adj");
+        if (cats.includes("FAM"))    cell.classList.add("cat-fam");
+        if (cats.includes("ANIMAL"))   cell.classList.add("cat-animal");
+        if (cats.includes("CLOTHES"))  cell.classList.add("cat-clothes");
+        if (cats.includes("JOB"))  cell.classList.add("cat-job");
+        if (cats.includes("LIT"))      cell.classList.add("cat-lit"); //l'ultima è quella che prevale se una parola ne ha più di uno
+}
+
+
 function renderCard(cardId) {
     const cardEl = document.getElementById(cardId);
-    cardEl.innerHTML = '';
-    
+    cardEl.innerHTML = "";
+
     playerCards[cardId].forEach(item => {
-        const cell = document.createElement('div');
-        cell.className = 'card-cell';
+        const cell = document.createElement("div");
+        cell.className = "card-cell  cell";
+
+        applyCategoryClasses(cell, item);
+
         cell.textContent = item.word;
-        cell.onclick = () => cell.classList.toggle('covered');
+        cell.onclick = () => {
+            const styles = getComputedStyle(cell);
+            const borderColor = styles.borderColor;
+
+            if (!cell.classList.contains("covered")) {
+                cell.dataset.originalBg = styles.backgroundColor;
+                cell.dataset.originalBorder = borderColor;
+
+                const darker = darkenColor(borderColor, 0.25);
+                cell.style.backgroundColor = borderColor;
+                cell.style.borderColor = darker;
+                cell.style.color = "white";
+                cell.classList.add("covered");
+            } else {
+                cell.style.backgroundColor = cell.dataset.originalBg || "#f0f0f0";
+                cell.style.borderColor = cell.dataset.originalBorder || borderColor;
+                cell.style.color = "";
+                cell.classList.remove("covered");
+            }
+        };
+
         cardEl.appendChild(cell);
     });
+}
+
+function darkenColor(rgbString, factor) {
+    const match = rgbString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+    if (!match) return rgbString;
+
+    let [_, r, g, b] = match;
+    r = Math.round(parseInt(r, 10) * (1 - factor));
+    g = Math.round(parseInt(g, 10) * (1 - factor));
+    b = Math.round(parseInt(b, 10) * (1 - factor));
+
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 function resetCards() {
     document.querySelectorAll('.card-cell').forEach(cell => {
         cell.classList.remove('covered');
+        cell.style.backgroundColor = '';
+        cell.style.borderColor = '';
+        cell.style.color = '';
     });
 }
 
-// Initialize
-createBoard();
-createWheel();
-generatePlayerCards();
+// Inizializza la pagina alla prima apertura
+document.addEventListener("DOMContentLoaded", () => {
+    // imposta il pallino MIX come attivo, se esiste
+    const mixBtn = document.querySelector('.class-dot[data-class="mix"]');
+    if (mixBtn) {
+        document.querySelectorAll(".class-dot").forEach(btn => {
+            btn.classList.remove("active");
+        });
+        mixBtn.classList.add("active");
+    }
+
+    document.getElementById("navButtons").style.display = "flex";
+
+    createBoard();          // crea tabellone MIX
+    createWheel();          // crea ruota
+    generatePlayerCards();  // genera le 4 cartelle
+    showPage("index");      // mostra la pagina del board
+});
