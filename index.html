@@ -27,6 +27,8 @@
                 <div class="nav-buttons" id="navButtons">
                     <button class="nav-btn" onclick="showPage('index')">📊 Board</button>
                     <button class="nav-btn" onclick="showPage('player')">🎮 Player Cards</button>
+                    <button class="nav-btn" onclick="printBoard()">🖨</button>
+                    
                 </div>
             </div>
             
@@ -53,25 +55,25 @@
         <div id="player" class="page"> 
             <div class="player-content">
                 <div class="card">
-                    <h2>Card 1:</h2> 
+                    <h2>Card:</h2> 
                     <div id="card1" class="card-grid"></div>
                 </div>
                 
                 <div class="card">
-                    <h2>Card 2:</h2>
+                    <h2>Card:</h2>
                     <div id="card2" class="card-grid"></div>
                 </div>
                 
                 <div class="card">
-                    <h2>Card 3:</h2>
+                    <h2>Card:</h2>
                     <div id="card3" class="card-grid"></div>
                 </div>
                 
                 <div class="card">
-                    <h2>Card 4:</h2>
+                    <h2>Card:</h2>
                     <div id="card4" class="card-grid"></div>
                 </div>
-                
+                <button class="nav-btn" onclick="printCards()">🖨 Print</button>
                 <button class="reset-btn" onclick="resetCards()">🔄 Reset All Cards</button>
                 <button class="generate-btn" onclick="generatePlayerCards()">🎲 Generate New Cards</button>
             </div>
