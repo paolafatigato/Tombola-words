@@ -24,18 +24,29 @@
                     </div>
                 </div>
                 
-                <div class="nav-buttons" id="navButtons">
-                    <button class="nav-btn" onclick="showPage('index')">📊 Board</button>
-                    <button class="nav-btn" onclick="showPage('player')">🎮 Player Cards</button>
-                    <button class="nav-btn" onclick="printBoard()">🖨</button>
-                    
-                </div>
+                        <div class="nav-buttons" id="navButtons">
+                        <button class="nav-btn" onclick="showPage('index')"
+                                id="nav-index">Board</button>
+                        <button class="nav-btn" onclick="showPage('player')"
+                                id="nav-player">Player Cards</button>
+
+                        <!-- Pulsante print board come icona -->
+                        <button class="nav-btn icon-btn" id="printBoard-btn"
+                                onclick="printBoard()" data-tooltip="Print board">🖨️
+                        </button>
+
+                        <!-- Pulsante print cards come icona -->
+                        <button class="nav-btn icon-btn" id="printCards-btn"
+                                onclick="printCards()" data-tooltip="Print cards">
+                            🃏
+                        </button>
+                        </div>
+
             </div>
             
             <div class="wheel-container-small">
                 <div class="wheel-pointer"></div>
-                <div id="wheel" class="wheel"></div>
-                <button id="spinBtn" class="spin-btn" onclick="spinWheel()">🎰 Spin!</button>
+                <div id="wheelBtn" class="wheel" onclick="spinWheel()"></div>
                 <div id="extractedNumber" class="extracted-number"></div>
                 <div id="extractedWord" class="extracted-word"></div>
                 <div id="extractedDefinition" class="extracted-definition"></div>
@@ -73,7 +84,6 @@
                     <h2>Card:</h2>
                     <div id="card4" class="card-grid"></div>
                 </div>
-                <button class="nav-btn" onclick="printCards()">🖨 Print</button>
                 <button class="reset-btn" onclick="resetCards()">🔄 Reset All Cards</button>
                 <button class="generate-btn" onclick="generatePlayerCards()">🎲 Generate New Cards</button>
             </div>
