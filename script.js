@@ -87,7 +87,6 @@ const words = [
   { categories: ["ACTION", "VERB"],  word: "speak",        definition: "To say words with your mouth.",                                   classe: "1media" },
   { categories: ["OTHER", "NOUN"],   word: "student",      definition: "A person who goes to school to learn.",                           classe: "1media" },
   { categories: ["ADJ", "ADJ"],      word: "stressed",     definition: "Feeling very worried and under pressure.",                        classe: "1media" },
-  { categories: ["NOUN", "NOUN"],    word: "sweather",     definition: "A warm top you wear over a shirt in cold weather.",               classe: "1media" },
   { categories: ["ACTION", "VERB"],  word: "take",         definition: "To pick something up and hold or move it.",                       classe: "1media" },
   { categories: ["ADJ", "PERSON"],   word: "talkative",    definition: "A person who likes speaking a lot.",                              classe: "1media" },
   { categories: ["OTHER", "NOUN"],   word: "teacher",      definition: "A person who helps students learn.",                              classe: "1media" },
@@ -153,7 +152,6 @@ const words = [
 
 
 ];
-
 let extractedNumbers = [];
 let isSpinning = false;
 let playerCards = {card1: [], card2: [], card3: [], card4: []};
@@ -238,7 +236,9 @@ function createBoard() {
 
         if (classWords.length < 100) {
             let additionalWords;
-            if (selectedClass === "2media") {
+            if (selectedClass === "1media") {
+                additionalWords = words.filter(w => w.classe === "2media");
+            }if (selectedClass === "2media") {
                 additionalWords = words.filter(w => w.classe === "1media");
             } else if (selectedClass === "3media") {
                 additionalWords = words.filter(
@@ -463,7 +463,7 @@ function resetCards() {
 
 // Inizializza la pagina alla prima apertura
 document.addEventListener("DOMContentLoaded", () => {
-    // imposta il pallino MIX come attivo, se esiste
+    // eventuale logica per il pallino mix attivo
     const mixBtn = document.querySelector('.class-dot[data-class="mix"]');
     if (mixBtn) {
         document.querySelectorAll(".class-dot").forEach(btn => {
@@ -474,9 +474,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("navButtons").style.display = "flex";
 
-    createBoard();          // crea tabellone MIX
-    createWheel();          // crea ruota
-    generatePlayerCards();  // genera le 4 cartelle
-    showPage("index");      // mostra la pagina del board
+    createBoard();
+    createWheel();
+    generatePlayerCards();
+    showPage("index");
 });
 
+
+function printBoard() {
+    // mostra solo la pagina del board
+    showPage('index');
+    window.print();
+}
+
+function printCards() {
+    // mostra solo la pagina delle schede
+    showPage('player');
+    window.print();
+}
