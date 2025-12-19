@@ -175,6 +175,8 @@ function createWheel() {
     wheel.style.background = `conic-gradient(${gradientStops.join(', ')})`;
 }
 
+// gira la ruota
+
 function spinWheel() {
     if (isSpinning || extractedNumbers.length === 100) return;
     
@@ -199,21 +201,30 @@ function spinWheel() {
         extractedNumbers.push(randomNum);
         const wordObj = currentBoardWords[randomNum - 1];
         
-        document.getElementById('extractedNumber').textContent = randomNum;
-        document.getElementById('extractedWord').textContent = wordObj.word;
+        // Mostra SOLO la definizione
+        document.getElementById('extractedNumber').textContent = '';
+        document.getElementById('extractedWord').textContent = '';
         document.getElementById('extractedDefinition').textContent = wordObj.definition;
         
-        const cell = document.getElementById(`cell-${randomNum}`);
-        cell.classList.add('extracted');
+        // Dopo 5 secondi mostra numero e parola, ed evidenzia la casella
+        setTimeout(() => {
+            document.getElementById('extractedNumber').textContent = randomNum;
+            document.getElementById('extractedWord').textContent = wordObj.word;
+            
+            // Evidenzia la casella sul tabellone
+            const cell = document.getElementById(`cell-${randomNum}`);
+            cell.classList.add('extracted');
+            
+            isSpinning = false;
+            document.getElementById('spinBtn').disabled = false;
+            
+            if (extractedNumbers.length === 100) {
+                document.getElementById('spinBtn').textContent = '✅ All Done!';
+                document.getElementById('spinBtn').disabled = true;
+            }
+        }, 5000); // 5 secondi di ritardo
         
-        isSpinning = false;
-        document.getElementById('spinBtn').disabled = false;
-        
-        if (extractedNumbers.length === 100) {
-            document.getElementById('spinBtn').textContent = '✅ All Done!';
-            document.getElementById('spinBtn').disabled = true;
-        }
-    }, 3000);
+    }, 2000);
 }
 
 function generatePlayerCards() {
@@ -338,4 +349,3 @@ function printCards() {
     showPage('player');
     window.print();
 }
-
