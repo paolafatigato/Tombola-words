@@ -422,3 +422,68 @@
             font-size: 0.9em;
             opacity: 0.8;
         }
+
+
+
+        @media print {
+
+    /* nascondi tutto di default */
+    body * {
+        visibility: hidden;
+    }
+
+    /* TABELLONE: mostra solo contenuto della pagina index */
+    #index,
+    #index * {
+        visibility: visible;
+    }
+
+    /* CARTE: mostra solo contenuto della pagina player */
+    #player,
+    #player * {
+        visibility: visible;
+    }
+    /* layout tessera per le card */
+    #player .card-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 colonne */
+        gap: 5px;
+    }
+
+    #player .card-cell {
+        font-size: 0.8em;
+        padding: 5px;
+        min-height: 24px;
+        text-transform: uppercase;
+    }
+
+    /* ogni card (Card 1, Card 2, ecc.) su una riga distinta */
+    #player .card {
+        page-break-inside: avoid;
+        margin-bottom: 10px;
+    }
+
+    #player .card h2 {
+        margin-bottom: 6px;
+        font-size: 1em;
+    }
+
+    /* posiziona la pagina visibile in alto a sinistra */
+    #index.page.active,
+    #player.page.active {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* elementi da nascondere sempre in stampa */
+    .nav-buttons, 
+    .nav-btn,
+    .class-selection,
+    .wheel-container,
+    .spin-btn,
+    .footer {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
