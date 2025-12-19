@@ -3,19 +3,40 @@ let isSpinning = false;
 let playerCards = {card1: [], card2: [], card3: [], card4: []};
 let currentBoardWords = [];
 let selectedClass = "mix";
+const TOTAL = 35;  //numero di spicchi della ruota
 
 
-const colors = [
-    '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
-    '#F7DC6F', '#BB8FCE', '#85C1E2', '#F8B739', '#52B788',
-    '#E74C3C', '#3498DB', '#9B59B6', '#1ABC9C', '#F39C12',
-    '#D35400', '#C0392B', '#8E44AD', '#2980B9', '#27AE60'
-];
+
+
+const cssColors = getComputedStyle(document.documentElement)
+  .getPropertyValue('--palette-colors')
+  .split(',')
+  .map(c => c.trim());
+
+console.log(cssColors);
+
 
 function showPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(page).classList.add('active');
+  // cambia pagina
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+
+  // aggiorna evidenziazione dei pulsanti nav
+  const navIndex = document.getElementById('nav-index');
+  const navPlayer = document.getElementById('nav-player');
+
+  if (navIndex && navPlayer) {
+    navIndex.classList.remove('active');
+    navPlayer.classList.remove('active');
+
+    if (page === 'index') {
+      navIndex.classList.add('active');
+    } else if (page === 'player') {
+      navPlayer.classList.add('active');
+    }
+  }
 }
+
 
 function selectClass(classLevel) {
     selectedClass = classLevel;
@@ -57,8 +78,10 @@ function applyCategoryClasses(cell, item) {
     if (cats.includes("ACTION"))  cell.classList.add("cat-action");
     if (cats.includes("ADJ"))     cell.classList.add("cat-adj");
     if (cats.includes("FAM"))     cell.classList.add("cat-fam");
+    if (cats.includes("PERSONALITY")) cell.classList.add("cat-personality");
     if (cats.includes("ANIMAL"))  cell.classList.add("cat-animal");
     if (cats.includes("CLOTHES")) cell.classList.add("cat-clothes");
+    if (cats.includes("HOBBY"))     cell.classList.add("cat-hobby");
     if (cats.includes("JOB"))     cell.classList.add("cat-job");
     if (cats.includes("LIT"))     cell.classList.add("cat-lit"); // ultima = prioritaria
 }
@@ -152,8 +175,8 @@ function randomMixedBoard() {
 
     // reset estrazioni
     extractedNumbers = [];
-    document.getElementById("spinBtn").textContent = "Spin!";
-    document.getElementById("spinBtn").disabled = false;
+    document.getElementById("wheelBtn").textContent = "Spin!";
+    document.getElementById("wheelBtn").disabled = false;
     document.getElementById("extractedNumber").textContent = "";
     document.getElementById("extractedWord").textContent = "";
     document.getElementById("extractedDefinition").textContent = "";
@@ -161,27 +184,31 @@ function randomMixedBoard() {
 
 
 function createWheel() {
-    const wheel = document.getElementById('wheel');
-    const segmentAngle = 360 / 100;
-    
+    const wheel = document.getElementById('wheelBtn');
+    const segmentAngle = 360 /TOTAL;
+
     let gradientStops = [];
-    for (let i = 0; i < 100; i++) {
-        const colorIndex = i % colors.length;
+
+    for (let i = 0; i < TOTAL; i++) {
+        const colorIndex = i % cssColors.length;
         const startAngle = i * segmentAngle;
         const endAngle = (i + 1) * segmentAngle;
-        gradientStops.push(`${colors[colorIndex]} ${startAngle}deg ${endAngle}deg`);
+
+        gradientStops.push(
+            `${cssColors[colorIndex]} ${startAngle}deg ${endAngle}deg`
+        );
     }
-    
+
     wheel.style.background = `conic-gradient(${gradientStops.join(', ')})`;
 }
 
-// gira la ruota
 
+// gira la ruota .
 function spinWheel() {
     if (isSpinning || extractedNumbers.length === 100) return;
     
     isSpinning = true;
-    document.getElementById('spinBtn').disabled = true;
+    document.getElementById('wheelBtn').disabled = true;
     
     let availableNumbers = [];
     for (let i = 1; i <= 100; i++) {
@@ -192,7 +219,7 @@ function spinWheel() {
     
     const randomNum = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
     
-    const wheel = document.getElementById('wheel');
+    const wheel = document.getElementById('wheelBtn');
     const spins = 5 + Math.random() * 3;
     const rotation = spins * 360 + Math.random() * 360;
     wheel.style.transform = `rotate(${rotation}deg)`;
@@ -213,16 +240,25 @@ function spinWheel() {
             
             // Evidenzia la casella sul tabellone
             const cell = document.getElementById(`cell-${randomNum}`);
-            cell.classList.add('extracted');
+            if (cell) {
+            // prendo il colore del bordo (deriva dalla categoria)
+            const styles = getComputedStyle(cell);
+            const borderColor = styles.borderColor;
+
+            // applico la classe extracted + sfondo = colore del bordo
+            cell.classList.add("extracted");
+            cell.style.backgroundColor = borderColor;
+            }
+
             
             isSpinning = false;
-            document.getElementById('spinBtn').disabled = false;
+            document.getElementById('wheelBtn').disabled = false;
             
             if (extractedNumbers.length === 100) {
-                document.getElementById('spinBtn').textContent = '✅ All Done!';
-                document.getElementById('spinBtn').disabled = true;
+                document.getElementById('wheelBtn').textContent = '✅ All Done!';
+                document.getElementById('wheelBtn').disabled = true;
             }
-        }, 5000); // 5 secondi di ritardo
+        }, 9000); // 9 secondi di ritardo
         
     }, 2000);
 }
