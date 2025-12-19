@@ -255,9 +255,8 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: all 0.3s;
     font-weight: bold;
-    margin-top: 20px;
-    justify-content: center;
-    
+    margin: 20px auto 0;
+    display: block;
 }
 
         .spin-btn:hover:not(:disabled) {
@@ -276,21 +275,25 @@
     font-weight: bold;
     color: #541e7a;
     min-height: 60px;
-    
+    text-align: center;
 }
 
 .extracted-word {
     font-size: 1.2em;
     color: #ffffff;
     margin-top: 10px;
+    text-align: center;
+    text-transform: uppercase; /*maiuscole*/
+    
 }
 
 .extracted-definition {
     font-size: 0.95em;
     color: #ffffff;
-    margin-top: 8px;
+    margin: 8px;
     font-style: italic;
     line-height: 1.4;
+    text-align: center;
 }
 
         /* Player Page Styles */
@@ -423,7 +426,228 @@
             opacity: 0.8;
         }
 
+/* ============================================
+   RESPONSIVE MOBILE STYLES
+   ============================================ */
 
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    /* Header Section - Stack verticalmente */
+    .header-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header-left {
+        width: 100%;
+    }
+
+    /* Class Selection */
+    .class-selection {
+        padding: 8px;
+        margin-bottom: 15px;
+    }
+
+    .class-level-row {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .class-label {
+        font-size: 1em;
+    }
+
+    .class-dot {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+    }
+
+    /* Navigation Buttons */
+    .nav-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .nav-btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+        flex: 1 1 auto;
+        min-width: 100px;
+    }
+
+    /* Wheel Container */
+    .wheel-container-small {
+        width: 100%;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    .wheel {
+        width: 200px;
+        height: 200px;
+        margin: 15px auto;
+    }
+
+    .wheel-pointer {
+        top: 190px;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 30px solid #ff4444;
+    }
+
+    .spin-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .extracted-number {
+        font-size: 1.5em;
+        min-height: 40px;
+    }
+
+    .extracted-word {
+        font-size: 1em;
+    }
+
+    .extracted-definition {
+        font-size: 0.85em;
+    }
+
+    /* Board Container */
+    .index-content {
+        flex-direction: column;
+    }
+
+    .board-container {
+        padding: 10px;
+        width: 100%;
+        margin: 0;
+    }
+
+    .board {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 3px;
+        width: 100%;
+    }
+
+    .board-cell {
+        font-size: 0.5em;
+        padding: 2px;
+        border-width: 1px;
+    }
+
+    .board-cell .number {
+        font-size: 1em;
+    }
+
+    .board-cell .word {
+        font-size: 0.75em;
+        margin-top: 1px;
+    }
+
+    /* Player Cards */
+    .player-content {
+        gap: 20px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card h2 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .card-cell {
+        padding: 8px 6px;
+        font-size: 0.85em;
+    }
+
+    .reset-btn,
+    .generate-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer {
+        font-size: 0.8em;
+        padding: 15px;
+        margin-top: 20px;
+    }
+}
+
+/* Extra small devices (phones in portrait, less than 480px) */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.3em;
+    }
+
+    .board {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 2px;
+    }
+
+    .board-cell {
+        font-size: 0.45em;
+        padding: 1px;
+    }
+
+    .board-cell .word {
+        font-size: 0.7em;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .card-cell {
+        padding: 8px 6px;
+        font-size: 0.85em;
+    }
+
+    .wheel {
+        width: 180px;
+        height: 180px;
+    }
+
+    .wheel-pointer {
+        top: 170px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .board {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 3px;
+    }
+
+    .board-cell {
+        font-size: 0.5em;
+    }
+}
 
         @media print {
 
